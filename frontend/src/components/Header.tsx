@@ -1,5 +1,16 @@
-const Header = () => {
-  return <h1>Header: React Router Tutorial</h1>;
+import React from "react";
+import "./Header.css";
+
+interface Props {
+  children: string;
+  color?: string; // Add an optional color prop
+}
+
+const Header = ({ children, color }: Props) => {
+  const headerStyle = {
+    color: color || "black",
+  };
+  return <h1 style={headerStyle}>{children}</h1>;
 };
 
 export default Header;
