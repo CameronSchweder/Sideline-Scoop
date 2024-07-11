@@ -1,4 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
 body {
   background-image: url(../images/sb-stadium.png);
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.headerContainer {
+  text-align: center;
+  margin-top: 15rem;
+}
+
+.headerContainer h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 64px;
+  font-weight: bolder;
+}
+
+.header-1 {
+  color: white;
+}
+
+.header-2 {
+  color: #d50a0a;
+}
+
+button {
+  cursor: pointer;
+  background-color: #013369;
+  color: white;
+  width: 11rem;
+  height: 4.3rem;
+  border-radius: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 25px;
+  font-weight: bolder;
+  border: none;
+  margin-top: -10px;
 }
