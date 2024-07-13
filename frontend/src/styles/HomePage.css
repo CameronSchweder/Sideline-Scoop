@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 body {
+  margin: 0;
+  padding: 0;
   background-image: url(../images/sb-stadium.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -10,12 +12,12 @@ body {
 
 .headerContainer {
   text-align: center;
-  margin-top: 15rem;
+  margin-top: 13.5rem;
 }
 
 .headerContainer h1 {
   font-family: "Inter", sans-serif;
-  font-size: 64px;
+  font-size: 5vw;
   font-weight: bolder;
 }
 
