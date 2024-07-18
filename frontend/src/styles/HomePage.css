@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url(../images/sb-stadium.png);
+  /*background-image: url(../images/sb-stadium.png);*/
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -12,7 +12,7 @@ body {
 
 .headerContainer {
   text-align: center;
-  margin-top: 13.5rem;
+  margin-top: 5rem;
 }
 
 .headerContainer h1 {
@@ -40,5 +40,5 @@ button {
   font-size: 25px;
   font-weight: bolder;
   border: none;
-  margin-top: -10px;
+  margin-top: 10px;
 }
