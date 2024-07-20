@@ -27,11 +27,34 @@ nav {
   transition: 0.2s ease-in-out;
 }
 
+#navbar p {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
 #navbar li a:hover {
   color: #d50a0a;
 }
 
+#navbar p:hover {
+  color: #d50a0a;
+}
+
 #navbar li a:hover::after {
+  content: "";
+  width: 60%;
+  height: 2px;
+  background-color: #d50a0a;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+}
+
+#navbar p:hover::after {
   content: "";
   width: 60%;
   height: 2px;

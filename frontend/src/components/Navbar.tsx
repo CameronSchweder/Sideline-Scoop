@@ -5,6 +5,7 @@ import "../styles/Navbar.css";
 
 const Navbar = () => {
   const [clicked, setClicked] = useState(false);
+  const [flyout, setFlyout] = useState(false);
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -46,7 +47,8 @@ const Navbar = () => {
               <a href="/home">Players</a>
             </li>
             <li>
-              <a href="/home">Teams</a>
+              <p onClick={() => setFlyout(!flyout)}>Teams</p>
+              {flyout && <Flyout />}
             </li>
           </ul>
         </div>
