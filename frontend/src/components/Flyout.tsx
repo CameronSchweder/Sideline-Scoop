@@ -20,7 +20,11 @@ const Flyout = () => {
                 className={item.cName}
                 onClick={() => setFlyout(false)}
               >
-                <img src={item.logo} />
+                <img
+                  src={`public/team-logos/${item.logo}`}
+                  alt={item.title}
+                  className="submenu-team-image"
+                />
               </Link>
             </li>
           );
