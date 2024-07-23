@@ -20,7 +20,7 @@ const Flyout = () => {
                 className={item.cName}
                 onClick={() => setFlyout(false)}
               >
-                {item.title}
+                <img src={item.logo} />
               </Link>
             </li>
           );

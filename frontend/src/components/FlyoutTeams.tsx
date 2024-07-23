@@ -2,224 +2,224 @@ export const flyoutTeams = [
   {
     id: 1,
     title: "Arizona Cardinals",
-    logo:
+    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Arizona_Cardinals_logo.svg/200px-Arizona_Cardinals_logo.svg.png",
     path: "./cardinals",
     cName: "submenu-item",
   },
   {
     id: 2,
     title: "Atlanta Falcons",
-    logo: 
+    logo: "../images/team-logos/falcons.png",
     path: "./falcons",
     cName: "submenu-item",
   },
   {
     id: 3,
     title: "Baltimore Ravens",
-    logo: 
+    logo: "../images/team-logos/ravens.png",
     path: "./ravens",
     cName: "submenu-item",
   },
   {
     id: 4,
     title: "Buffalo Bills",
-    logo: 
+    logo: "../images/team-logos/bills.png",
     path: "./bills",
     cName: "submenu-item",
   },
   {
     id: 5,
     title: "Carolina Panthers",
-    logo: 
+    logo: "../images/team-logos/panthers",
     path: "./panthers",
     cName: "submenu-item",
   },
   {
     id: 6,
     title: "Chicago Bears",
-    logo: 
+    logo: "../images/team-logos/bears",
     path: "./bears",
     cName: "submenu-item",
   },
   {
     id: 7,
     title: "Cincinnati Bengals",
-    logo: 
+    logo: "../images/team-logos/bengals",
     path: "./bengals",
     cName: "submenu-item",
   },
   {
     id: 8,
     title: "Cleveland Browns",
-    logo: 
+    logo: "../images/team-logos/browns",
     path: "./browns",
     cName: "submenu-item",
   },
   {
     id: 9,
     title: "Dallas Cowboys",
-    logo: 
+    logo: "../images/team-logos/cowboys",
     path: "./cowboys",
     cName: "submenu-item",
   },
   {
     id: 10,
     title: "Denver Broncos",
-    logo: 
+    logo: "../images/team-logos/broncos",
     path: "./broncos",
     cName: "submenu-item",
   },
   {
     id: 11,
     title: "Detroit Lions",
-    logo: 
+    logo: "../images/team-logos/lions",
     path: "./lions",
     cName: "submenu-item",
   },
   {
     id: 12,
     title: "Green Bay Packers",
-    logo: 
+    logo: "../images/team-logos/packers",
     path: "./packers",
     cName: "submenu-item",
   },
   {
     id: 13,
     title: "Houston Texans",
-    logo: 
+    logo: "../images/team-logos/texans",
     path: "./texans",
     cName: "submenu-item",
   },
   {
     id: 14,
     title: "Indianapolis Colts",
-    logo: 
+    logo: "../images/team-logos/colts",
     path: "./colts",
     cName: "submenu-item",
   },
   {
     id: 15,
     title: "Jacksonville Jaguars",
-    logo: 
+    logo: "../images/team-logos/jaguars",
     path: "./jaguars",
     cName: "submenu-item",
   },
   {
     id: 16,
     title: "Kansas City Chiefs",
-    logo: 
+    logo: "../images/team-logos/chiefs",
     path: "./chiefs",
     cName: "submenu-item",
   },
   {
     id: 17,
     title: "Las Vegas Raiders",
-    logo: 
+    logo: "../images/team-logos/raiders",
     path: "./raiders",
     cName: "submenu-item",
   },
   {
     id: 18,
     title: "Los Angeles Chargers",
-    logo: 
+    logo: "../images/team-logos/chargers",
     path: "./chargers",
     cName: "submenu-item",
   },
   {
     id: 19,
     title: "Los Angeles Rams",
-    logo: 
+    logo: "../images/team-logos/rams",
     path: "./rams",
     cName: "submenu-item",
   },
   {
     id: 20,
     title: "Miami Dolphins",
-    logo: 
+    logo: "../images/team-logos/dolphins",
     path: "./dolphins",
     cName: "submenu-item",
   },
   {
     id: 21,
     title: "Minnesota Vikings",
-    logo: 
+    logo: "../images/team-logos/vikings",
     path: "./vikings",
     cName: "submenu-item",
   },
   {
     id: 22,
     title: "New England Patriots",
-    logo: 
+    logo: "../images/team-logos/patriots",
     path: "./patriots",
     cName: "submenu-item",
   },
   {
     id: 23,
     title: "New Orleans Saints",
-    logo: 
+    logo: "../images/team-logos/saints",
     path: "./saints",
     cName: "submenu-item",
   },
   {
     id: 24,
     title: "New York Giants",
-    logo: 
+    logo: "../images/team-logos/giants",
     path: "./giants",
     cName: "submenu-item",
   },
   {
     id: 25,
     title: "New York Jets",
-    logo: 
+    logo: "../images/team-logos/jets",
     path: "./jets",
     cName: "submenu-item",
   },
   {
     id: 26,
     title: "Philadelphia Eagles",
-    logo: 
+    logo: "../images/team-logos/eagles",
     path: "./eagles",
     cName: "submenu-item",
   },
   {
     id: 27,
     title: "Pittsburgh Steelers",
-    logo: 
+    logo: "../images/team-logos/steelers",
     path: "./steelers",
     cName: "submenu-item",
   },
   {
     id: 28,
     title: "San Francisco 49ers",
-    logo: 
+    logo: "../images/team-logos/49ers",
     path: "./49ers",
     cName: "submenu-item",
   },
   {
     id: 29,
     title: "Seattle Seahawks",
-    logo: 
+    logo: "../images/team-logos/seahawks",
     path: "./seahawks",
     cName: "submenu-item",
   },
   {
     id: 30,
     title: "Tampa Bay Buccaneers",
-    logo: 
+    logo: "../images/team-logos/buccaneers",
     path: "./buccaneers",
     cName: "submenu-item",
   },
   {
     id: 31,
     title: "Tennessee Titans",
-    logo: 
+    logo: "../images/team-logos/titans",
     path: "./titans",
     cName: "submenu-item",
   },
   {
     id: 32,
     title: "Washington Commanders",
-    logo: 
+    logo: "../images/team-logos/commanders",
     path: "./commanders",
     cName: "submenu-item",
   },
