@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Flyout from "./Flyout";
 
 import "../styles/Navbar.css";
@@ -14,7 +15,7 @@ const Navbar = () => {
   return (
     <>
       <nav>
-        <a href="/home">
+        <Link to={"/nfl-news"}>
           <svg
             id="logo-72"
             width="52"
@@ -30,21 +31,21 @@ const Navbar = () => {
               fill="#212326"
             ></path>{" "}
           </svg>
-        </a>
+        </Link>
 
         <div>
           <ul id="navbar" className={clicked ? "#navbar active" : "navbar"}>
             <li>
-              <a href="/home">News</a>
+              <Link to={"/nfl-news"}>News</Link>
             </li>
             <li>
-              <a href="/home">Schedule</a>
+              <Link to={"/nfl-schedule"}>Schedule</Link>
             </li>
             <li>
-              <a href="/home">Standings</a>
+              <Link to={"/nfl-standings"}>Standings</Link>
             </li>
             <li>
-              <a href="/home">Players</a>
+              <Link to={"/nfl-players"}>Players</Link>
             </li>
             <li>
               <p onClick={() => setFlyout(!flyout)}>Teams</p>

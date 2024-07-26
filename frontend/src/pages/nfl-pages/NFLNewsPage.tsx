@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 //import "bootstrap/dist/css/bootstrap.css";
-import "../styles/HomePage.css";
+import "../../styles/HomePage.css";
 
-const HomePage = () => {
+const NFLNewsPage = () => {
   return (
     <>
       <div className="headerContainer">
@@ -18,4 +18,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default NFLNewsPage;

@@ -21,7 +21,7 @@ const Flyout = () => {
                 onClick={() => setFlyout(false)}
               >
                 <img
-                  src={`public/team-logos/${item.logo}`}
+                  src={`team-logos/${item.logo}`}
                   alt={item.title}
                   className="submenu-team-image"
                 />
