@@ -1,5 +1,5 @@
 import "./App.css";
-
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NFLNewsPage from "./pages/nfl-pages/NFLNewsPage";
 import NFLSchedulePage from "./pages/nfl-pages/NFLSchedulePage";

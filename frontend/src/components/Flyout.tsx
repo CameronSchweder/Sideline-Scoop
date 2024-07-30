@@ -18,7 +18,9 @@ const Flyout = () => {
               <Link
                 to={"/test"}
                 className={item.cName}
-                onClick={() => setFlyout(false)}
+                onClick={() => {
+                  setFlyout(false);
+                }}
               >
                 <img
                   src={`team-logos/${item.logo}`}

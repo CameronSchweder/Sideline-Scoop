@@ -11,7 +11,7 @@ const url =
   "https://api.sportradar.com/nfl/official/trial/v7/en/teams/c5a59daa-53a7-4de0-851f-fb12be893e9e/full_roster.json?api_key=nh20javGLz1fLfyr5yXH5atzs06uC6ya7WcfqboT";
 
 const TestPage = () => {
-  return <div>Players:</div>;
+  return <div>Test</div>;
 };
 
 export default TestPage;
