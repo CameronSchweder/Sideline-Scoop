@@ -1,13 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Flyout from "./Flyout";
 
 import "../styles/Navbar.css";
 
 const Navbar = () => {
   const [clicked, setClicked] = useState(false);
-  const [flyout, setFlyout] = useState(false);
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -47,10 +45,6 @@ const Navbar = () => {
             </li>
             <li>
               <Link to={"/nfl-players"}>Players</Link>
-            </li>
-            <li>
-              <p onClick={() => setFlyout(!flyout)}>Teams</p>
-              {flyout && <Flyout />}
             </li>
           </ul>
         </div>

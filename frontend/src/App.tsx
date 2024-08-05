@@ -1,12 +1,10 @@
 import "./App.css";
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NFLNewsPage from "./pages/nfl-pages/NFLNewsPage";
-import NFLSchedulePage from "./pages/nfl-pages/NFLSchedulePage";
-import NFLStandingsPage from "./pages/nfl-pages/NFLStandingsPage";
-import NFLPlayersPage from "./pages/nfl-pages/NFLPlayersPage";
-
-import TestPage from "./pages/TestPage";
+import NewsPage from "./pages/NewsPage";
+import SchedulePage from "./pages/SchedulePage";
+import StandingsPage from "./pages/StandingsPage";
+import PlayersPage from "./pages/PlayersPage";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -15,13 +13,11 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route index element={<NFLNewsPage />} />
-          <Route path="/nfl-news" element={<NFLNewsPage />} />
-          <Route path="/nfl-schedule" element={<NFLSchedulePage />} />
-          <Route path="/nfl-standings" element={<NFLStandingsPage />} />
-          <Route path="/nfl-players" element={<NFLPlayersPage />} />
-
-          <Route path="/test" element={<TestPage />} />
+          <Route index element={<NewsPage />} />
+          <Route path="/nfl-news" element={<NewsPage />} />
+          <Route path="/nfl-schedule" element={<SchedulePage />} />
+          <Route path="/nfl-standings" element={<StandingsPage />} />
+          <Route path="/nfl-players" element={<PlayersPage />} />
         </Routes>
       </BrowserRouter>
     </div>
