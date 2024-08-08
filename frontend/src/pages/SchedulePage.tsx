@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Game from "../components/Game";
+import WeekDropdown from "../components/WeekDropdown";
 
 import "../styles/SchedulePage.css";
 
@@ -59,21 +60,22 @@ const SchedulePage = () => {
   const gameDates = new Set<string>();
 
   return (
-    <>
-      <div className="scheduleContainer">
-        {preseasonGames.map((game) => {
-          // Removing the time from the schedule date, since we only care about the day
-          const date = game.scheduled.split("T")[0];
+    <div>
+      <WeekDropdown />
+      {preseasonGames.map((game) => {
+        // Removing the time from the schedule date, since we only care about the day
+        const date = game.scheduled.split("T")[0];
 
-          const shouldDisplayDate = !gameDates.has(date);
-          if (shouldDisplayDate) {
-            gameDates.add(date);
-          }
-          return (
+        const shouldDisplayDate = !gameDates.has(date);
+        if (shouldDisplayDate) {
+          gameDates.add(date);
+        }
+        return (
+          <>
+            {shouldDisplayDate && (
+              <h2 className="scheduledDate">{formatDate(game.scheduled)}</h2>
+            )}
             <div>
-              {shouldDisplayDate && (
-                <h2 className="scheduledDate">{formatDate(game.scheduled)}</h2>
-              )}
               <Game
                 homeTeam={game.home.alias}
                 awayTeam={game.away.alias}
@@ -82,10 +84,10 @@ const SchedulePage = () => {
                 time={formatTime(game.scheduled) + " EST"}
               />
             </div>
-          );
-        })}
-      </div>
-    </>
+          </>
+        );
+      })}
+    </div>
   );
 };
 
