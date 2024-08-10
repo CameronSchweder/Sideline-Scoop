@@ -15,6 +15,7 @@ interface GameData {
 
 const SchedulePage = () => {
   const [preseasonGames, setPreseasonGames] = useState<GameData[]>([]);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,8 +23,9 @@ const SchedulePage = () => {
         const response = await fetch(
           "https://m01y6p3v80.execute-api.us-east-2.amazonaws.com/api/pre-schedule"
         );
-        const data = await response.json();
-        const games = data.external_api_response.weeks.flatMap(
+        const apiData = await response.json();
+        setData(apiData);
+        const games = apiData.external_api_response.weeks.flatMap(
           (week: { games: GameData[] }) => week.games
         );
         setPreseasonGames(games);
@@ -58,6 +60,14 @@ const SchedulePage = () => {
   };
 
   const gameDates = new Set<string>();
+
+  if (!data) {
+    return (
+      <div className="loadingState">
+        <i className="fa-solid fa-gear"></i>
+      </div>
+    );
+  }
 
   return (
     <div>

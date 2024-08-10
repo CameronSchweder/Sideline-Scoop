@@ -8,3 +8,25 @@
   margin-left: 38rem;
   margin-top: 3rem;
 }
+
+.loadingState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.loadingState i {
+  opacity: 0.5;
+  font-size: 3rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
