@@ -15,6 +15,7 @@ interface GameData {
 
 const SchedulePage = () => {
   const [preseasonGames, setPreseasonGames] = useState<GameData[]>([]);
+  const [filteredGames, setFilteredGames] = useState<GameData[]>([]);
   const [data, setData] = useState(null);
   const [weekPicked, setWeekPicked] = useState("");
 
@@ -40,6 +41,19 @@ const SchedulePage = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (data && weekPicked !== "") {
+      const weekIndex =
+        weekPicked === "hall-of-fame"
+          ? 0
+          : parseInt(weekPicked.split("-")[2], 10);
+      const filtered = data.external_api_response.weeks[weekIndex]?.games || [];
+      setFilteredGames(filtered);
+    } else {
+      setFilteredGames(preseasonGames);
+    }
+  }, [data, weekPicked, preseasonGames]);
 
   // Formatting the dates of the games
   const formatDate = (dateString: string) => {
@@ -74,8 +88,7 @@ const SchedulePage = () => {
   return (
     <div>
       <WeekDropdown onChange={(option) => setWeekPicked(option)} />
-      <h1>Option Picked: {weekPicked}</h1>
-      {preseasonGames.map((game) => {
+      {filteredGames.map((game) => {
         // Converts scheduled value to EST before date extraction
         const localDate = new Date(game.scheduled).toLocaleDateString("en-US", {
           timeZone: "America/New_York",
