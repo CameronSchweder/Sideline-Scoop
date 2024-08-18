@@ -21,14 +21,23 @@ const customStyles: StylesConfig = {
   }),
 };
 
-const WeekDropdown = () => {
+interface WeekDropdownProps {
+  onChange: (option: string) => void;
+}
+
+const WeekDropdown: React.FC<WeekDropdownProps> = ({ onChange }) => {
+  const handleChange = (selectedOption: any) => {
+    onChange(selectedOption.value);
+  };
+
   return (
     <div>
       <Select
         className="dropdown"
         options={options}
         styles={customStyles}
-      ></Select>
+        onChange={handleChange}
+      />
     </div>
   );
 };

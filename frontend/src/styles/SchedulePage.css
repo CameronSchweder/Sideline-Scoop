@@ -22,6 +22,11 @@
   animation: spin 1s linear infinite;
 }
 
+.dropdown {
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
