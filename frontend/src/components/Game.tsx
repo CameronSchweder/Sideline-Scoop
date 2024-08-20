@@ -14,9 +14,13 @@ const Game = ({ homeTeam, awayTeam, venue, network, time }: Props) => {
   return (
     <>
       <div className="gameContainer">
-        <p>{time}</p>
-        <p>
-          {network} -- Home: {homeTeam} | Away: {awayTeam} -- {venue}
+        <p className="time">{time}</p>
+        <p className="gameDetails">
+          <span className="network">{network}</span>
+          <span className="teams">
+            {awayTeam} @ {homeTeam}
+          </span>
+          <span className="venue">{venue}</span>
         </p>
       </div>
     </>

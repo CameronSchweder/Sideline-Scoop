@@ -33,7 +33,9 @@ const SchedulePage = () => {
         );
         setPreseasonGames(games);
 
-        console.log(apiData.external_api_response);
+        determineCurrentWeek(apiData.external_api_response.weeks);
+
+        //console.log(apiData.external_api_response);
       } catch (error) {
         console.error("Error fetching the preseason games:", error);
       }
@@ -41,6 +43,28 @@ const SchedulePage = () => {
 
     fetchData();
   }, []);
+
+  const determineCurrentWeek = (weeks: any[]) => {
+    const currentDate = new Date();
+
+    for (let i = 0; i < weeks.length; i++) {
+      const week = weeks[i];
+      const weekStartDate = new Date(week.games[0].scheduled);
+      const weekEndDate = new Date(week.games[week.games.length - 1].scheduled);
+      console.log(weekPicked);
+
+      if (currentDate >= weekStartDate && currentDate <= weekEndDate) {
+        setWeekPicked(i === 0 ? "Hall-of-Fame" : `Pre-Week-${i}`);
+        return;
+      } else if (currentDate < weekStartDate) {
+        setWeekPicked(i === 0 ? "Hall-of-Fame" : `Pre-Week-${i}`);
+        return;
+      }
+    }
+
+    // Default to Hall of Fame if no match found (before all games start)
+    setWeekPicked("Hall-of-Fame");
+  };
 
   useEffect(() => {
     if (data && weekPicked !== "") {
@@ -87,7 +111,10 @@ const SchedulePage = () => {
 
   return (
     <div>
-      <WeekDropdown onChange={(option) => setWeekPicked(option)} />
+      <WeekDropdown
+        onChange={(option) => setWeekPicked(option)}
+        placeholder={weekPicked.replace(/-/g, " ")}
+      />
       {filteredGames.map((game) => {
         // Converts scheduled value to EST before date extraction
         const localDate = new Date(game.scheduled).toLocaleDateString("en-US", {
