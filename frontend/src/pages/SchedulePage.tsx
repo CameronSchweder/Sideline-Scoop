@@ -15,10 +15,13 @@ interface GameData {
 
 const SchedulePage = () => {
   const [preseasonGames, setPreseasonGames] = useState<GameData[]>([]);
+  const [regularSeasonGames, setRegularSeasonGames] = useState<GameData[]>([]);
   const [filteredGames, setFilteredGames] = useState<GameData[]>([]);
-  const [data, setData] = useState(null);
+  const [preseasonData, setPreseasonData] = useState(null);
+  const [regularSeasonData, setRegularSeasonData] = useState(null);
   const [weekPicked, setWeekPicked] = useState("");
 
+  // Fetch preseason data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,7 +30,7 @@ const SchedulePage = () => {
         );
         const apiData = await response.json();
 
-        setData(apiData);
+        setPreseasonData(apiData);
         const games = apiData.external_api_response.weeks.flatMap(
           (week: { games: GameData[] }) => week.games
         );
@@ -38,6 +41,30 @@ const SchedulePage = () => {
         //console.log(apiData.external_api_response);
       } catch (error) {
         console.error("Error fetching the preseason games:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Fetch regular season data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://m01y6p3v80.execute-api.us-east-2.amazonaws.com/api/reg-schedule"
+        );
+        const apiData = await response.json();
+
+        setRegularSeasonData(apiData);
+
+        const games = apiData.external_api_response.weeks.flatMap(
+          (week: { games: GameData[] }) => week.games
+        );
+        setRegularSeasonGames(games);
+        console.log(games);
+      } catch (error) {
+        console.error("Error fetching the regular season games:", error);
       }
     };
 
@@ -67,17 +94,34 @@ const SchedulePage = () => {
   };
 
   useEffect(() => {
-    if (data && weekPicked !== "") {
-      const weekIndex =
+    if (preseasonData && weekPicked !== "" && !weekPicked.startsWith("week")) {
+      const preWeekIndex =
         weekPicked === "hall-of-fame"
           ? 0
           : parseInt(weekPicked.split("-")[2], 10);
-      const filtered = data.external_api_response.weeks[weekIndex]?.games || [];
-      setFilteredGames(filtered);
-    } else {
-      setFilteredGames(preseasonGames);
+      const filteredPreseason =
+        preseasonData.external_api_response.weeks[preWeekIndex]?.games || [];
+
+      setFilteredGames(filteredPreseason);
+    } else if (
+      regularSeasonData &&
+      weekPicked != "" &&
+      weekPicked.startsWith("week")
+    ) {
+      const regWeekIndex = parseInt(weekPicked.split("-")[1], 10) - 1;
+      const filteredRegularSeason =
+        regularSeasonData.external_api_response.weeks[regWeekIndex]?.games ||
+        [];
+
+      setFilteredGames(filteredRegularSeason);
     }
-  }, [data, weekPicked, preseasonGames]);
+  }, [
+    preseasonData,
+    regularSeasonData,
+    weekPicked,
+    preseasonGames,
+    regularSeasonGames,
+  ]);
 
   // Formatting the dates of the games
   const formatDate = (dateString: string) => {
@@ -99,15 +143,16 @@ const SchedulePage = () => {
     });
   };
 
-  const gameDates = new Set<string>();
-
-  if (!data) {
+  // Show spinning gear icon if data has not been loaded in
+  if (!preseasonData || !regularSeasonData) {
     return (
       <div className="loadingState">
         <i className="fa-solid fa-gear"></i>
       </div>
     );
   }
+
+  const gameDates = new Set<string>();
 
   return (
     <div>
