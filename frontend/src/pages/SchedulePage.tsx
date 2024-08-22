@@ -11,6 +11,7 @@ interface GameData {
   venue: { name: string };
   broadcast?: { network?: string };
   scheduled: string;
+  scoring?: { away_points?: string; home_points?: string };
 }
 
 const SchedulePage = () => {
@@ -35,7 +36,6 @@ const SchedulePage = () => {
           (week: { games: GameData[] }) => week.games
         );
         setPreseasonGames(games);
-
         determineCurrentWeek(apiData.external_api_response.weeks);
 
         //console.log(apiData.external_api_response);
@@ -62,7 +62,6 @@ const SchedulePage = () => {
           (week: { games: GameData[] }) => week.games
         );
         setRegularSeasonGames(games);
-        console.log(games);
       } catch (error) {
         console.error("Error fetching the regular season games:", error);
       }
@@ -71,6 +70,7 @@ const SchedulePage = () => {
     fetchData();
   }, []);
 
+  /* NEED TO ADD FUNCTIONALITY TO DETERMINE CURRENT REGULAR SEASON WEEK */
   const determineCurrentWeek = (weeks: any[]) => {
     const currentDate = new Date();
 
@@ -78,7 +78,6 @@ const SchedulePage = () => {
       const week = weeks[i];
       const weekStartDate = new Date(week.games[0].scheduled);
       const weekEndDate = new Date(week.games[week.games.length - 1].scheduled);
-      console.log(weekPicked);
 
       if (currentDate >= weekStartDate && currentDate <= weekEndDate) {
         setWeekPicked(i === 0 ? "Hall-of-Fame" : `Pre-Week-${i}`);
@@ -182,6 +181,8 @@ const SchedulePage = () => {
                 venue={game.venue.name}
                 network={game.broadcast?.network || "NFL+"}
                 time={formatTime(game.scheduled) + " EST"}
+                awayScore={game.scoring?.away_points || ""}
+                homeScore={game.scoring?.home_points || ""}
               />
             </div>
           </>

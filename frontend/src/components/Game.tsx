@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import "../styles/Game.css";
 
 interface Props {
@@ -8,9 +6,19 @@ interface Props {
   venue: string;
   network: string;
   time: string;
+  awayScore: string;
+  homeScore: string;
 }
 
-const Game = ({ homeTeam, awayTeam, venue, network, time }: Props) => {
+const Game = ({
+  homeTeam,
+  awayTeam,
+  venue,
+  network,
+  time,
+  awayScore,
+  homeScore,
+}: Props) => {
   return (
     <>
       <div className="gameContainer">
@@ -18,7 +26,7 @@ const Game = ({ homeTeam, awayTeam, venue, network, time }: Props) => {
         <p className="gameDetails">
           <span className="network">{network}</span>
           <span className="teams">
-            {awayTeam} @ {homeTeam}
+            {awayScore} {awayTeam} @ {homeTeam} {homeScore}
           </span>
           <span className="venue">{venue}</span>
         </p>
