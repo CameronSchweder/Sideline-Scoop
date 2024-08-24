@@ -1,5 +1,11 @@
+import LeagueTable from "../components/LeagueTable";
+
 const StandingsPage = () => {
-  return <></>;
+  return (
+    <>
+      <LeagueTable />
+    </>
+  );
 };
 
 export default StandingsPage;
