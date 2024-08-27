@@ -1,12 +1,6 @@
 {
   "resources": [
     {
-      "name": "default-role",
-      "resource_type": "iam_role",
-      "role_arn": "arn:aws:iam::011528293496:role/api-dev",
-      "role_name": "api-dev"
-    },
-    {
       "name": "api_handler",
       "resource_type": "lambda_function",
       "lambda_arn": "arn:aws:lambda:us-east-2:011528293496:function:api-dev"

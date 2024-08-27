@@ -14,12 +14,23 @@ interface GameData {
   scoring?: { away_points?: string; home_points?: string };
 }
 
+interface WeekData {
+  games: GameData[];
+}
+
+interface ApiResponse {
+  external_api_response: {
+    weeks: WeekData[];
+  };
+}
+
 const SchedulePage = () => {
   const [preseasonGames, setPreseasonGames] = useState<GameData[]>([]);
   const [regularSeasonGames, setRegularSeasonGames] = useState<GameData[]>([]);
   const [filteredGames, setFilteredGames] = useState<GameData[]>([]);
-  const [preseasonData, setPreseasonData] = useState(null);
-  const [regularSeasonData, setRegularSeasonData] = useState(null);
+  const [preseasonData, setPreseasonData] = useState<ApiResponse | null>(null);
+  const [regularSeasonData, setRegularSeasonData] =
+    useState<ApiResponse | null>(null);
   const [weekPicked, setWeekPicked] = useState("");
 
   // Fetch preseason data
@@ -36,9 +47,6 @@ const SchedulePage = () => {
           (week: { games: GameData[] }) => week.games
         );
         setPreseasonGames(games);
-        determineCurrentWeek(apiData.external_api_response.weeks);
-
-        //console.log(apiData.external_api_response);
       } catch (error) {
         console.error("Error fetching the preseason games:", error);
       }
@@ -70,20 +78,41 @@ const SchedulePage = () => {
     fetchData();
   }, []);
 
-  /* NEED TO ADD FUNCTIONALITY TO DETERMINE CURRENT REGULAR SEASON WEEK */
-  const determineCurrentWeek = (weeks: any[]) => {
+  /* NEED TO ADD FIX REGULAR REASON WEEK PLACEHOLDERS NOT BEING CAPITALIZED */
+  const determineCurrentWeek = (
+    preseasonWeeks: any[],
+    regularSeasonWeeks: any[]
+  ) => {
     const currentDate = new Date();
 
-    for (let i = 0; i < weeks.length; i++) {
-      const week = weeks[i];
-      const weekStartDate = new Date(week.games[0].scheduled);
-      const weekEndDate = new Date(week.games[week.games.length - 1].scheduled);
+    for (let i = 0; i < preseasonWeeks.length; i++) {
+      const preseasonWeek = preseasonWeeks[i];
+      const preWeekStartDate = new Date(preseasonWeek.games[0].scheduled);
+      const preWeekEndDate = new Date(
+        preseasonWeek.games[preseasonWeek.games.length - 1].scheduled
+      );
 
-      if (currentDate >= weekStartDate && currentDate <= weekEndDate) {
+      if (currentDate >= preWeekStartDate && currentDate <= preWeekEndDate) {
         setWeekPicked(i === 0 ? "Hall-of-Fame" : `Pre-Week-${i}`);
         return;
-      } else if (currentDate < weekStartDate) {
+      } else if (currentDate < preWeekStartDate) {
         setWeekPicked(i === 0 ? "Hall-of-Fame" : `Pre-Week-${i}`);
+        return;
+      }
+    }
+
+    for (let i = 0; i < regularSeasonWeeks.length; i++) {
+      const regularSeasonWeek = regularSeasonWeeks[i];
+      const regWeekStartDate = new Date(regularSeasonWeek.games[0].scheduled);
+      const regWeekEndDate = new Date(
+        regularSeasonWeek.games[regularSeasonWeek.games.length - 1].scheduled
+      );
+
+      if (currentDate >= regWeekStartDate && currentDate <= regWeekEndDate) {
+        setWeekPicked(i === 0 ? "week-1" : `week-${i}`);
+        return;
+      } else if (currentDate < regWeekStartDate) {
+        setWeekPicked(i === 0 ? "week-1" : `week-${i}`);
         return;
       }
     }
@@ -121,6 +150,15 @@ const SchedulePage = () => {
     preseasonGames,
     regularSeasonGames,
   ]);
+
+  useEffect(() => {
+    if (preseasonData && regularSeasonData) {
+      determineCurrentWeek(
+        preseasonData.external_api_response.weeks,
+        regularSeasonData.external_api_response.weeks
+      );
+    }
+  }, [preseasonData, regularSeasonData]);
 
   // Formatting the dates of the games
   const formatDate = (dateString: string) => {
