@@ -14,12 +14,12 @@ regularSeason_table = dynamodb.Table('Team-RegularSeason-Stats')
 def index():
     return {'hello': 'world'}
 
-@app.route('/team-ids', cors=True, methods=['GET'])
-def get_team_ids(): 
+@app.route('/pre-team-stats', cors=True, methods=['GET'])
+def get_pre_team_stats(): 
    try:
        response = preseason_table.scan()
        items = response.get('Items', [])
-       return {"external_api_response" : items}
+       return {"team_stats" : items}
    except client.exceptions.AccessDeniedException as e:
        print(e.response)
 
