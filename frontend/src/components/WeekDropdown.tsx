@@ -53,7 +53,7 @@ const WeekDropdown: React.FC<WeekDropdownProps> = ({
   };
 
   return (
-    <div>
+    <div className="dropdown-container">
       <Select
         className="dropdown"
         options={options}

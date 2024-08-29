@@ -91,6 +91,7 @@ nav {
 
   #navbar.active {
     right: 0px;
+    z-index: 5;
   }
 
   #navbar li {

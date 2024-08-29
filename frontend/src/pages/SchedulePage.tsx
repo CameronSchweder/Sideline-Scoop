@@ -77,7 +77,6 @@ const SchedulePage = () => {
     fetchData();
   }, []);
 
-  /* NEED TO ADD FIX REGULAR REASON WEEK PLACEHOLDERS NOT BEING CAPITALIZED */
   const determineCurrentWeek = (
     preseasonWeeks: WeekData[],
     regularSeasonWeeks: WeekData[]
