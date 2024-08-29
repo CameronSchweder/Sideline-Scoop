@@ -5,13 +5,14 @@ import WeekDropdown from "../components/WeekDropdown";
 import "../styles/SchedulePage.css";
 
 interface GameData {
-  id: string;
-  home: { alias: string };
-  away: { alias: string };
-  venue: { name: string };
-  broadcast?: { network?: string };
+  gameId: string;
+  homeTeam: string;
+  awayTeam: string;
+  venue: string;
+  network: string;
   scheduled: string;
-  scoring?: { away_points?: string; home_points?: string };
+  homePoints: number;
+  awayPoints: number;
 }
 
 interface WeekData {
@@ -19,9 +20,7 @@ interface WeekData {
 }
 
 interface ApiResponse {
-  external_api_response: {
-    weeks: WeekData[];
-  };
+  weeks: { [key: string]: WeekData };
 }
 
 const SchedulePage = () => {
@@ -40,11 +39,11 @@ const SchedulePage = () => {
         const response = await fetch(
           "https://m01y6p3v80.execute-api.us-east-2.amazonaws.com/api/pre-schedule"
         );
-        const apiData = await response.json();
+        const apiData: ApiResponse = await response.json();
 
         setPreseasonData(apiData);
-        const games = apiData.external_api_response.weeks.flatMap(
-          (week: { games: GameData[] }) => week.games
+        const games = Object.values(apiData.weeks).flatMap(
+          (week: WeekData) => week.games
         );
         setPreseasonGames(games);
       } catch (error) {
@@ -62,12 +61,12 @@ const SchedulePage = () => {
         const response = await fetch(
           "https://m01y6p3v80.execute-api.us-east-2.amazonaws.com/api/reg-schedule"
         );
-        const apiData = await response.json();
+        const apiData: ApiResponse = await response.json();
 
         setRegularSeasonData(apiData);
 
-        const games = apiData.external_api_response.weeks.flatMap(
-          (week: { games: GameData[] }) => week.games
+        const games = Object.values(apiData.weeks).flatMap(
+          (week: WeekData) => week.games
         );
         setRegularSeasonGames(games);
       } catch (error) {
@@ -80,8 +79,8 @@ const SchedulePage = () => {
 
   /* NEED TO ADD FIX REGULAR REASON WEEK PLACEHOLDERS NOT BEING CAPITALIZED */
   const determineCurrentWeek = (
-    preseasonWeeks: any[],
-    regularSeasonWeeks: any[]
+    preseasonWeeks: WeekData[],
+    regularSeasonWeeks: WeekData[]
   ) => {
     const currentDate = new Date();
 
@@ -109,10 +108,10 @@ const SchedulePage = () => {
       );
 
       if (currentDate >= regWeekStartDate && currentDate <= regWeekEndDate) {
-        setWeekPicked(i === 0 ? "week-1" : `week-${i}`);
+        setWeekPicked(i === 0 ? "Week-1" : `week-${i}`);
         return;
       } else if (currentDate < regWeekStartDate) {
-        setWeekPicked(i === 0 ? "week-1" : `week-${i}`);
+        setWeekPicked(i === 0 ? "Week-1" : `week-${i}`);
         return;
       }
     }
@@ -122,24 +121,23 @@ const SchedulePage = () => {
   };
 
   useEffect(() => {
-    if (preseasonData && weekPicked !== "" && !weekPicked.startsWith("week")) {
+    if (preseasonData && weekPicked !== "" && !weekPicked.startsWith("Week")) {
       const preWeekIndex =
         weekPicked === "hall-of-fame"
           ? 0
           : parseInt(weekPicked.split("-")[2], 10);
       const filteredPreseason =
-        preseasonData.external_api_response.weeks[preWeekIndex]?.games || [];
+        Object.values(preseasonData.weeks)[preWeekIndex]?.games || [];
 
       setFilteredGames(filteredPreseason);
     } else if (
       regularSeasonData &&
       weekPicked != "" &&
-      weekPicked.startsWith("week")
+      weekPicked.startsWith("Week")
     ) {
       const regWeekIndex = parseInt(weekPicked.split("-")[1], 10) - 1;
       const filteredRegularSeason =
-        regularSeasonData.external_api_response.weeks[regWeekIndex]?.games ||
-        [];
+        Object.values(regularSeasonData.weeks)[regWeekIndex]?.games || [];
 
       setFilteredGames(filteredRegularSeason);
     }
@@ -154,8 +152,8 @@ const SchedulePage = () => {
   useEffect(() => {
     if (preseasonData && regularSeasonData) {
       determineCurrentWeek(
-        preseasonData.external_api_response.weeks,
-        regularSeasonData.external_api_response.weeks
+        Object.values(preseasonData.weeks),
+        Object.values(regularSeasonData.weeks)
       );
     }
   }, [preseasonData, regularSeasonData]);
@@ -212,15 +210,15 @@ const SchedulePage = () => {
             {shouldDisplayDate && (
               <h2 className="scheduledDate">{formatDate(game.scheduled)}</h2>
             )}
-            <div>
+            <div className="gameWrapper">
               <Game
-                homeTeam={game.home.alias}
-                awayTeam={game.away.alias}
-                venue={game.venue.name}
-                network={game.broadcast?.network || "NFL+"}
+                homeTeam={game.homeTeam}
+                awayTeam={game.awayTeam}
+                venue={game.venue}
+                network={game.network}
                 time={formatTime(game.scheduled) + " EST"}
-                awayScore={game.scoring?.away_points || ""}
-                homeScore={game.scoring?.home_points || ""}
+                awayScore={game.awayPoints?.toString() || ""}
+                homeScore={game.homePoints?.toString() || ""}
               />
             </div>
           </>

@@ -9,6 +9,14 @@ table {
   background: #d9d9d9;
 }
 
+.nfc-table {
+  margin-top: 5rem;
+}
+
+.nfc-east-table {
+  margin-top: 5rem;
+}
+
 caption,
 th,
 td {
@@ -16,7 +24,7 @@ td {
 }
 
 caption {
-  background: hsl(0 0% 0%);
+  background: #013369;
   color: white;
   font-size: 1.5rem;
   font-weight: 700;
@@ -35,8 +43,39 @@ td {
   text-align: center;
 }
 
+.loadingState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.loadingState i {
+  opacity: 0.5;
+  font-size: 3rem;
+  animation: spin 1s linear infinite;
+}
+
 /* Responsiveness */
 .table-container {
   max-width: 100%;
   overflow-x: auto;
+}
+
+@media (max-width: 1200px) {
+  .table-caption {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-caption {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-caption {
+    text-align: left;
+  }
 }

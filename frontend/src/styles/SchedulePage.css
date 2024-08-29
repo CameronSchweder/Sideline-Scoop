@@ -1,12 +1,19 @@
 .gameContainer {
+  align-items: center;
   margin-top: 5rem;
   margin-left: 25rem;
   width: 50%;
 }
 
 .scheduledDate {
-  margin-left: 38rem;
   margin-top: 3rem;
+  text-align: center;
+}
+
+.gameWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .loadingState {
@@ -33,5 +40,52 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles */
+@media (min-width: 1200px) {
+  .gameContainer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  .scheduledDate {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .gameContainer {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  }
+
+  .scheduledDate {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .gameContainer {
+    margin-left: 1.5rem;
+    width: 90%;
+  }
+
+  .scheduledDate {
+    margin-left: 10rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gameContainer {
+    margin-left: 0rem;
+    width: 100%;
+  }
+
+  .scheduledDate {
+    margin-left: 0;
   }
 }
