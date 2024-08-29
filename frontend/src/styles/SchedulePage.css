@@ -1,6 +1,6 @@
 .gameContainer {
   align-items: center;
-  margin-top: 5rem;
+  margin-top: 4rem;
   margin-left: 25rem;
   width: 50%;
 }
@@ -75,14 +75,14 @@
   }
 
   .scheduledDate {
-    margin-left: 10rem;
+    margin-left: 0;
   }
 }
 
 @media (max-width: 480px) {
   .gameContainer {
-    margin-left: 0rem;
     width: 100%;
+    margin-right: 20px;
   }
 
   .scheduledDate {

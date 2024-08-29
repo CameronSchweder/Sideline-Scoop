@@ -165,6 +165,7 @@ def update_pre_stats():
             div = division['name']
             for team in division['teams']:
                 team_id = team['id']
+                team_alias = team['alias']
                 wins = team['wins']
                 losses = team['losses']
                 ties = team['ties']
@@ -202,7 +203,8 @@ def update_pre_stats():
                             conf = :conf,
                             div = :div,
                             confRank = :confRank,
-                            divRank = :divRank
+                            divRank = :divRank,
+                            teamAlias = :team_alias
                     """,
                     ExpressionAttributeValues={
                         ':wins': wins,
@@ -220,7 +222,8 @@ def update_pre_stats():
                         ':conf': conf,
                         ':div': div,
                         ':confRank': confRank,
-                        ':divRank': divRank
+                        ':divRank': divRank,
+                        ':team_alias': team_alias
                     }
                 )
     return {'status': 'success'}
@@ -282,6 +285,7 @@ def update_reg_stats():
             div = division['name']
             for team in division['teams']:
                 team_id = team['id']
+                team_alias = team['alias']
                 wins = team['wins']
                 losses = team['losses']
                 ties = team['ties']
@@ -337,7 +341,8 @@ def update_reg_stats():
                             conf = :conf,
                             div = :div,
                             confRank = :confRank,
-                            divRank = :divRank
+                            divRank = :divRank,
+                            teamAlias = :team_alias
                     """,
                     ExpressionAttributeValues={
                         ':wins': wins,
@@ -355,7 +360,8 @@ def update_reg_stats():
                         ':conf': conf,
                         ':div': div,
                         ':confRank': confRank,
-                        ':divRank': divRank
+                        ':divRank': divRank,
+                        ':team_alias': team_alias
                     }
                 )
     return {'status': 'success'}

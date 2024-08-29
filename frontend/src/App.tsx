@@ -1,5 +1,4 @@
 import "./App.css";
-import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NewsPage from "./pages/NewsPage";
 import SchedulePage from "./pages/SchedulePage";
@@ -13,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route index element={<NewsPage />} />
+          <Route index element={<SchedulePage />} />
           <Route path="/nfl-news" element={<NewsPage />} />
           <Route path="/nfl-schedule" element={<SchedulePage />} />
           <Route path="/nfl-standings" element={<StandingsPage />} />

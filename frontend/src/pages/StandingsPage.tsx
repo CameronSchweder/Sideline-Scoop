@@ -3,7 +3,7 @@ import ConferenceTable from "../components/ConferenceTable";
 import DivisionTable from "../components/DivisionTable";
 import "../styles/StandingsPage.css";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const StandingsPage = () => {
   const [activeButton, setActiveButton] = useState<string | null>(

@@ -1,9 +1,12 @@
-import "../styles/Table.css";
 import { useState, useEffect } from "react";
+import * as NFLIcons from "react-nfl-logos";
+
+import "../styles/Table.css";
 
 type TeamStats = {
   teamId: string;
   teamName: string;
+  teamAlias: string;
   wins: number;
   losses: number;
   ties: number;
@@ -50,6 +53,14 @@ const ConferenceTable = ({
     fetchData();
   }, [selectedSeasonType]);
 
+  // Function to get the corresponding NFL icon component
+  const getTeamIcon = (team: string, size: number) => {
+    if (team === "JAC") team = "JAX";
+    if (team === "LA") team = "LAR";
+    const TeamIcon = NFLIcons[team as keyof typeof NFLIcons];
+    return TeamIcon ? <TeamIcon size={size} className="teamIcon" /> : null;
+  };
+
   // Show spinning gear icon if data has not been loaded in
   if (!dataLoaded) {
     return (
@@ -87,7 +98,10 @@ const ConferenceTable = ({
                 .filter((team) => team.conf === "AFC")
                 .map((team) => (
                   <tr key={team.teamId}>
-                    <td>{team.teamName}</td>
+                    <td className="teamCell">
+                      {" "}
+                      {getTeamIcon(team.teamAlias, 40)} {team.teamName}
+                    </td>
                     <td>{team.wins}</td>
                     <td>{team.losses}</td>
                     <td>{team.ties}</td>
@@ -134,7 +148,10 @@ const ConferenceTable = ({
                 .filter((team) => team.conf === "NFC")
                 .map((team) => (
                   <tr key={team.teamId}>
-                    <td>{team.teamName}</td>
+                    <td className="teamCell">
+                      {" "}
+                      {getTeamIcon(team.teamAlias, 40)} {team.teamName}
+                    </td>
                     <td>{team.wins}</td>
                     <td>{team.losses}</td>
                     <td>{team.ties}</td>
