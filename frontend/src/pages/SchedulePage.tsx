@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Game from "../components/Game";
 import WeekDropdown from "../components/WeekDropdown";
-import * as NFLIcons from "react-nfl-logos";
 
 import "../styles/SchedulePage.css";
 

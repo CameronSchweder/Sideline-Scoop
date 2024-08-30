@@ -15,7 +15,6 @@
 
 .time {
   text-align: center;
-  margin-top: 1px;
 }
 
 .network {
@@ -26,13 +25,9 @@
 
 .teams {
   flex: 2;
-  /**/
   display: flex;
-  /**/
   justify-content: center;
-  /**/
   align-items: center;
-  /*text-align: center;*/
 }
 
 .team-icon {

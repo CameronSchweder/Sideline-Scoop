@@ -366,7 +366,46 @@ def update_reg_stats():
                 )
     return {'status': 'success'}
 
-#@app.schedule('rate(3 hours)')
-#def every_three_hours(event):
-#    update_pre_stats()
-#    update_reg_stats()
+# 4:00pm CST on Sunday
+@app.schedule('cron(0 22 ? * 1 *)')
+def schedule_sunday_4pm(event):
+    update_pre_stats()
+    update_reg_stats()
+
+# 7:00pm CST on Sunday
+@app.schedule('cron(0 1 ? * 1 *)')
+def schedule_sunday_7pm(event):
+    update_pre_stats()
+    update_reg_stats()
+
+# 11:00pm CST on Sunday
+@app.schedule('cron(0 5 ? * 1 *)')
+def schedule_sunday_11pm(event):
+    update_pre_stats()
+    update_reg_stats()
+
+# 11:00pm CST on Monday, Wednesday, Thursday, Friday, Saturday
+@app.schedule('cron(0 5 ? * 2 *)')  # Monday 11:00pm CST (5:00am UTC next day)
+def schedule_monday(event):
+    update_pre_stats()
+    update_reg_stats()
+
+@app.schedule('cron(0 5 ? * 4 *)')  # Wednesday 11:00pm CST (5:00am UTC next day)
+def schedule_wednesday(event):
+    update_pre_stats()
+    update_reg_stats()
+
+@app.schedule('cron(0 5 ? * 5 *)')  # Thursday 11:00pm CST (5:00am UTC next day)
+def schedule_thursday(event):
+    update_pre_stats()
+    update_reg_stats()
+
+@app.schedule('cron(0 5 ? * 6 *)')  # Friday 11:00pm CST (5:00am UTC next day)
+def schedule_friday(event):
+    update_pre_stats()
+    update_reg_stats()
+
+@app.schedule('cron(0 5 ? * 7 *)')  # Saturday 11:00pm CST (5:00am UTC next day)
+def schedule_saturday(event):
+    update_pre_stats()
+    update_reg_stats()
