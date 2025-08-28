@@ -3,9 +3,19 @@ import boto3
 from boto3.dynamodb.conditions import Key
 import requests
 import time
+import os
 from decimal import Decimal
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv(dotenv_path='../../.env')
 
 app = Chalice(app_name='api')
+
+# Load API key from environment
+API_KEY = os.environ.get('API_KEY')
+if not API_KEY:
+    raise ValueError("API_KEY environment variable is not set")
 
 dynamodb = boto3.resource('dynamodb')
 preseason_table = dynamodb.Table('Team-Preseason-Stats')
@@ -114,8 +124,8 @@ def reg_schedule():
 
 @app.route('/update-pre-stats', cors=True, methods=['GET'])
 def update_pre_stats():
-    teamStatsUrl = 'https://api.sportradar.com/nfl/official/trial/v7/en/seasons/2024/PRE/standings/season.json?api_key=MXJWTM2ffAdb6bUWBYzk84HuL2I9Qrm5ygJemom9'
-    preseasonGamesUrl = "https://api.sportradar.com/nfl/official/trial/v7/en/games/2024/PRE/schedule.json?api_key=MXJWTM2ffAdb6bUWBYzk84HuL2I9Qrm5ygJemom9"
+    teamStatsUrl = f'https://api.sportradar.com/nfl/official/trial/v7/en/seasons/2024/PRE/standings/season.json?api_key={API_KEY}'
+    preseasonGamesUrl = f"https://api.sportradar.com/nfl/official/trial/v7/en/games/2024/PRE/schedule.json?api_key={API_KEY}"
 
     preseasonGamesData = requests.get(preseasonGamesUrl).json() 
 
@@ -230,8 +240,8 @@ def update_pre_stats():
 
 @app.route('/update-reg-stats', cors=True, methods=['GET'])
 def update_reg_stats():
-    teamStatsUrl = 'https://api.sportradar.com/nfl/official/trial/v7/en/seasons/2024/REG/standings/season.json?api_key=MXJWTM2ffAdb6bUWBYzk84HuL2I9Qrm5ygJemom9'
-    regularSeasonGamesUrl = 'https://api.sportradar.com/nfl/official/trial/v7/en/games/2024/REG/schedule.json?api_key=MXJWTM2ffAdb6bUWBYzk84HuL2I9Qrm5ygJemom9'
+    teamStatsUrl = f'https://api.sportradar.com/nfl/official/trial/v7/en/seasons/2024/REG/standings/season.json?api_key={API_KEY}'
+    regularSeasonGamesUrl = f'https://api.sportradar.com/nfl/official/trial/v7/en/games/2024/REG/schedule.json?api_key={API_KEY}'
 
     regularSeasonGamesData = requests.get(regularSeasonGamesUrl).json() 
 
